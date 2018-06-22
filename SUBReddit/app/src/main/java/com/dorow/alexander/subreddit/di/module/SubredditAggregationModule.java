@@ -1,6 +1,5 @@
 package com.dorow.alexander.subreddit.di.module;
 
-import com.dorow.alexander.subreddit.ui.search.SearchAdapter;
 import com.dorow.alexander.subreddit.ui.aggregation.AggregationPresenter;
 import com.dorow.alexander.subreddit.ui.aggregation.AggregationPresenterImpl;
 import com.dorow.alexander.subreddit.ui.aggregation.AggregationView;
@@ -20,11 +19,6 @@ public class SubredditAggregationModule {
     @Provides
     public AggregationView providesView() {
         return view;
-    }
-
-    @Provides
-    public SearchAdapter providesAdapter() {
-        return new SearchAdapter();
     }
 
     @Provides

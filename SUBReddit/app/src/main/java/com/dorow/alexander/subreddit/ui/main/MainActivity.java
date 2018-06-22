@@ -13,6 +13,7 @@ import com.dorow.alexander.subreddit.di.module.MainModule;
 import com.dorow.alexander.subreddit.ui.base.BaseActivityImpl;
 import com.dorow.alexander.subreddit.ui.search.SearchFragment;
 import com.dorow.alexander.subreddit.ui.aggregation.AggregationFragment;
+import com.dorow.alexander.subreddit.ui.subreddit.SubredditFragment;
 
 import java.util.List;
 
@@ -43,10 +44,22 @@ public class MainActivity extends BaseActivityImpl<MainPresenter, ActivityMainBi
     }
 
     @Override
+    public void inflateSubredditFragment(String subreddit) {
+        SubredditFragment fragment = new SubredditFragment();
+        Bundle b = new Bundle();
+        b.putString(SubredditFragment.SELECTED_SUBREDDIT, subreddit);
+        fragment.setArguments(b);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.rootView, fragment, fragment.getClass().getName())
+                .commit();
+    }
+
+    @Override
     public void inflateSearchFragment(String text) {
         SearchFragment fragment = new SearchFragment();
         Bundle b = new Bundle();
-        b.putString(SearchFragment.SEARCH_TEXT,text);
+        b.putString(SearchFragment.SEARCH_TEXT, text);
         fragment.setArguments(b);
         getSupportFragmentManager()
                 .beginTransaction()

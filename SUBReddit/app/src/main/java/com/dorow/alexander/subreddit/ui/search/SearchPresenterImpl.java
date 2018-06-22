@@ -1,8 +1,9 @@
 package com.dorow.alexander.subreddit.ui.search;
 
 import com.dorow.alexander.subreddit.api.RedditApi;
-import com.dorow.alexander.subreddit.api.dto.RedditSearchResponse;
-import com.dorow.alexander.subreddit.api.dto.SubredditSearchDto;
+import com.dorow.alexander.subreddit.api.dto.search.RedditSearchResponse;
+import com.dorow.alexander.subreddit.api.dto.search.SubredditSearchData;
+import com.dorow.alexander.subreddit.api.dto.search.SubredditSearchDto;
 import com.dorow.alexander.subreddit.ui.base.BasePresenterImpl;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class SearchPresenterImpl extends BasePresenterImpl<SearchView> implement
         if (!response.isSuccessful()) {
             return;
         }
-        List<SubredditSearchDto.SubredditSearchData> dataList = new ArrayList<>();
+        List<SubredditSearchData> dataList = new ArrayList<>();
         if (response.body() != null) {
             for (SubredditSearchDto subredditSearchDto : response.body().getData().getChildren()) {
                 dataList.add(subredditSearchDto.getData());

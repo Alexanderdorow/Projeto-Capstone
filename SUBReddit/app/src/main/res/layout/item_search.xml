@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="subreddit"
-            type="com.dorow.alexander.subreddit.api.dto.SubredditSearchDto.SubredditSearchData" />
+            type="com.dorow.alexander.subreddit.api.dto.search.SubredditSearchData" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -27,23 +26,23 @@
             tools:text="Subreddit Title" />
 
         <TextView
+            android:text="@{subreddit.description}"
             android:id="@+id/textView4"
             style="@style/Base.TextAppearance.AppCompat.Medium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:maxLines="2"
-            android:text="@{subreddit.description}"
             app:layout_constraintEnd_toStartOf="@+id/textView5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3"
             tools:text="Description" />
 
         <TextView
+            android:text="@{subreddit.subredditPrefix}"
             android:id="@+id/textView5"
             style="@style/Base.TextAppearance.AppCompat.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{subreddit.subredditPrefix}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

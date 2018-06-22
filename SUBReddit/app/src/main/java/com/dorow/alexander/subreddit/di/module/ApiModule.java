@@ -2,6 +2,8 @@ package com.dorow.alexander.subreddit.di.module;
 
 import com.dorow.alexander.subreddit.BuildConfig;
 import com.dorow.alexander.subreddit.api.RedditApi;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.concurrent.TimeUnit;
 
@@ -25,8 +27,11 @@ public class ApiModule {
 
     @Provides
     public RedditApi providesRedditApi(OkHttpClient client) {
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
         return new Retrofit.Builder().baseUrl(BuildConfig.SERVER_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build()
                 .create(RedditApi.class);

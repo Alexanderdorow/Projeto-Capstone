@@ -1,4 +1,4 @@
-package com.dorow.alexander.subreddit.api.dto;
+package com.dorow.alexander.subreddit.api.dto.search;
 
 import java.util.List;
 
