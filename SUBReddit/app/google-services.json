@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "150121351128",
+    "firebase_url": "https://subreddit-cdeb2.firebaseio.com",
+    "project_id": "subreddit-cdeb2",
+    "storage_bucket": "subreddit-cdeb2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150121351128:android:3d5f045ac33e3388",
+        "android_client_info": {
+          "package_name": "com.dorow.alexander.subreddit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "150121351128-pnkqifd9tt2l88e4phc3e2t9up3o0ein.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4-30CMORTLY5amRE5a8-ftYiVchNBOd8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
