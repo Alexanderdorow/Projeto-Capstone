@@ -6,8 +6,9 @@
     <string name="sub_unsaved">Subreddit desfavoritado</string>
     <string name="sub_saved">Subreddit favoritado</string>
     <string name="settings">Configurações</string>
+    <!-- DEFAULT TEST MOB ADD KEYS -->
     <string name="mob_add_key" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="mob_main_banner"> ca-app-pub-3940256099942544/6300978111</string>
+    <string name="mob_main_banner" translatable="false"> ca-app-pub-3940256099942544/6300978111</string>
     <string name="sync_only_by_wifi">Sincronização somente por wifi</string>
     <string name="favorite_subreddit">Subreddits favoritados</string>
     <string name="subreddit_removed">Subreddit removido</string>
