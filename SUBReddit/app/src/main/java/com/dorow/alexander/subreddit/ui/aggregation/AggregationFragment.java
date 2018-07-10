@@ -15,7 +15,6 @@ import com.dorow.alexander.subreddit.ui.topic.TopicActivity;
 
 import java.util.List;
 
-import static android.content.Context.APPWIDGET_SERVICE;
 import static com.dorow.alexander.subreddit.ui.main.MainActivity.WIDGET_TOPIC_EXTRA;
 import static com.dorow.alexander.subreddit.ui.subreddit.SubredditActivity.SELECTED_SUBREDDIT;
 
@@ -92,6 +91,5 @@ public class AggregationFragment extends BaseFragmentImpl<AggregationPresenter, 
         dataBinding.noSubredditImage.setVisibility(View.GONE);
         dataBinding.noSubredditMessage.setVisibility(View.GONE);
         dataBinding.noSubredditTitle.setVisibility(View.GONE);
-        dataBinding.searchButton.setVisibility(View.GONE);
     }
 }
