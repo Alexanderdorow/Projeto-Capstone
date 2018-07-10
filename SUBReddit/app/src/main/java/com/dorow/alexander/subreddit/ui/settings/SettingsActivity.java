@@ -3,6 +3,7 @@ package com.dorow.alexander.subreddit.ui.settings;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.dorow.alexander.subreddit.AppApplication;
 import com.dorow.alexander.subreddit.R;
 import com.dorow.alexander.subreddit.database.model.FavoriteSubreddit;
 import com.dorow.alexander.subreddit.databinding.ActivitySettingsBinding;
@@ -26,6 +27,12 @@ public class SettingsActivity extends BaseActivityImpl<SettingsPresenter, Activi
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         dataBinding.wifiSyncSwitch.setOnCheckedChangeListener(presenter);
         dataBinding.favoriteSubredditsList.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AppApplication.logEvent("in_main_activity", this);
     }
 
     @Override

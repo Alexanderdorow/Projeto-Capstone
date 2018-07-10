@@ -1,5 +1,7 @@
 package com.dorow.alexander.subreddit.ui.main;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,6 +9,7 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.dorow.alexander.subreddit.AppApplication;
 import com.dorow.alexander.subreddit.R;
 import com.dorow.alexander.subreddit.databinding.ActivityMainBinding;
 import com.dorow.alexander.subreddit.di.component.DaggerMainComponent;
@@ -45,6 +48,7 @@ public class MainActivity extends BaseActivityImpl<MainPresenter, ActivityMainBi
     protected void onResume() {
         super.onResume();
         inflateMainFragment(true);
+        AppApplication.logEvent("in_main_activity", this);
     }
 
     @Override
@@ -97,6 +101,27 @@ public class MainActivity extends BaseActivityImpl<MainPresenter, ActivityMainBi
                 .setLifetime(Lifetime.FOREVER)
                 .build();
         dispatcher.mustSchedule(myJob);
+    }
+
+    @Override
+    public void showsDialog() {
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.dialog_log_title)
+                .setMessage(R.string.dialog_log_message)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        presenter.onPositiveDialogButtonClick();
+                    }
+                })
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        presenter.onNegativeDialogButtonClick();
+                    }
+                })
+                .create();
+        alertDialog.show();
     }
 
     @Override

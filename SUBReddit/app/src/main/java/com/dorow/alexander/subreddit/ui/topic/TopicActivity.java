@@ -4,6 +4,7 @@ import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebViewClient;
 
+import com.dorow.alexander.subreddit.AppApplication;
 import com.dorow.alexander.subreddit.R;
 import com.dorow.alexander.subreddit.databinding.ActivityTopicBinding;
 import com.dorow.alexander.subreddit.di.component.DaggerTopicComponent;
@@ -24,6 +25,12 @@ public class TopicActivity extends BaseActivityImpl<TopicPresenter, ActivityTopi
         setSupportActionBar(dataBinding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AppApplication.logEvent("in_topic_activity", this);
     }
 
     @Override

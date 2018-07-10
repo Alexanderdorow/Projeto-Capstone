@@ -10,4 +10,6 @@ public interface MainView extends BaseView {
     void openSubredditActivity(String subreddit);
 
     void initJobDispatcher(boolean onlyWifiSync);
+
+    void showsDialog();
 }

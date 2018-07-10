@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.dorow.alexander.subreddit.AppApplication;
 import com.dorow.alexander.subreddit.R;
 import com.dorow.alexander.subreddit.api.dto.subreddit.TopicDto;
 import com.dorow.alexander.subreddit.databinding.ActivitySubredditBinding;
@@ -42,6 +43,12 @@ public class SubredditActivity extends BaseActivityImpl<SubredditPresenter, Acti
                 presenter.loadMore();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AppApplication.logEvent("in_main_activity", this);
     }
 
     @Override

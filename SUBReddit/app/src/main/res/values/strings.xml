@@ -13,4 +13,8 @@
     <string name="subreddit_removed">Subreddit removido</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+    <string name="dialog_log_title">Atenção</string>
+    <string name="dialog_log_message">Você permite que o SUBReddit grave logs para melhorar o sistema?</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
 </resources>
