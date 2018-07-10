@@ -1,5 +1,6 @@
 package com.dorow.alexander.subreddit.di.module;
 
+import com.dorow.alexander.subreddit.database.AppDatabase;
 import com.dorow.alexander.subreddit.ui.aggregation.AggregationPresenter;
 import com.dorow.alexander.subreddit.ui.aggregation.AggregationPresenterImpl;
 import com.dorow.alexander.subreddit.ui.aggregation.AggregationView;
@@ -22,8 +23,8 @@ public class SubredditAggregationModule {
     }
 
     @Provides
-    public AggregationPresenter providesPresenter(AggregationView view) {
-        return new AggregationPresenterImpl(view);
+    public AggregationPresenter providesPresenter(AggregationView view, AppDatabase db) {
+        return new AggregationPresenterImpl(view, db);
     }
 
 }

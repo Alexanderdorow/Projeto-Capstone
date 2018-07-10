@@ -40,6 +40,7 @@ public abstract class BaseFragmentImpl<P extends BasePresenter, DB extends ViewD
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         onViewReady();
     }
 

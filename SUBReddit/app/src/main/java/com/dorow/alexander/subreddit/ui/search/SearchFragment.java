@@ -1,6 +1,5 @@
 package com.dorow.alexander.subreddit.ui.search;
 
-import android.os.Bundle;
 import android.view.View;
 
 import com.dorow.alexander.subreddit.R;
@@ -9,7 +8,6 @@ import com.dorow.alexander.subreddit.databinding.FragmentSubredditSearchBinding;
 import com.dorow.alexander.subreddit.di.component.DaggerSubredditSearchComponent;
 import com.dorow.alexander.subreddit.di.module.SubredditSearchModule;
 import com.dorow.alexander.subreddit.ui.base.BaseFragmentImpl;
-import com.dorow.alexander.subreddit.ui.subreddit.SubredditFragment;
 import com.dorow.alexander.subreddit.util.AdapterItemClickCallback;
 
 import java.util.List;
@@ -42,6 +40,6 @@ public class SearchFragment extends BaseFragmentImpl<SearchPresenter, FragmentSu
 
     @Override
     public void onItemClick(SubredditSearchData item) {
-        activityContext.inflateSubredditFragment(item.getSubredditPrefix());
+        activityContext.openSubredditActivity(item.getSubredditPrefix());
     }
 }

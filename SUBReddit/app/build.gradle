@@ -16,6 +16,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        flavorDimensions 'tier'
+        freeVersion{
+            dimension 'tier'
+            matchingFallbacks = ['demo', 'trial']
+        }
+        paidVersion{
+            dimension 'tier'
+        }
+    }
     dataBinding {
         enabled = true
     }
@@ -24,14 +35,18 @@ android {
 ext {
     daggerVersion = "2.16"
     appCompatVersion = "27.1.1"
-    roomVersion = "1.1.0"
+    roomVersion = "1.1.1"
     lifecycleVersion = "1.1.1"
     retrofitVersion = "2.4.0"
-    constraintLayoutVersion = "1.1.0"
+    constraintLayoutVersion = "1.1.2"
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //noinspection GradleCompatible
+
+    implementation 'com.google.firebase:firebase-core:16.0.0'
+
     implementation "com.android.support:appcompat-v7:$appCompatVersion"
     implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
     implementation "com.android.support:design:$appCompatVersion"
@@ -40,6 +55,10 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
     implementation 'com.tuyenmonkey:mkloader:1.4.0'
+
+    implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
+
+    freeVersionImplementation 'com.google.firebase:firebase-ads:15.0.1'
 
     implementation "android.arch.persistence.room:runtime:$roomVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$roomVersion"
@@ -57,3 +76,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
+
+apply plugin: 'com.google.gms.google-services'

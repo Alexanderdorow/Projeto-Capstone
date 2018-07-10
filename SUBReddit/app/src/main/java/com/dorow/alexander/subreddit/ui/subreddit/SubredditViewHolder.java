@@ -22,14 +22,15 @@ class SubredditViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(final TopicDto data) {
-        binding.userName.setText(data.getAuthor());
+        binding.topicAuthor.setText(data.getAuthor());
+        binding.subredditTitle.setText(data.getSubredditPrefix());
         binding.title.setText(data.getTitle());
         Glide.with(binding.getRoot()).load(data.getThumbnail()).apply(new RequestOptions().centerCrop()).into(binding.thumbnail);
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                callback.onItemClick(data);
-            }
+                public void onClick(View v) {
+                    callback.onItemClick(data);
+                }
         });
     }
 }

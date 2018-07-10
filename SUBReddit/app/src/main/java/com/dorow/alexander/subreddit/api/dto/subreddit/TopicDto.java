@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class TopicDto {
 
+    @SerializedName("id")
+    private String id;
     @SerializedName("author")
     private String author;
     @SerializedName("name")
@@ -12,6 +14,16 @@ public class TopicDto {
     private String title;
     @SerializedName("thumbnail")
     private String thumbnail;
+    @SerializedName("subreddit_name_prefixed")
+    private String subredditPrefix;
+
+    public String getSubredditPrefix() {
+        return subredditPrefix;
+    }
+
+    public void setSubredditPrefix(String subredditPrefix) {
+        this.subredditPrefix = subredditPrefix;
+    }
 
     public String getName() {
         return name;
@@ -43,5 +55,13 @@ public class TopicDto {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

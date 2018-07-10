@@ -5,6 +5,8 @@ import com.dorow.alexander.subreddit.api.dto.subreddit.RedditSubredditResponse;
 import com.dorow.alexander.subreddit.api.dto.subreddit.SubredditResponse;
 import com.dorow.alexander.subreddit.api.dto.subreddit.SubredditTopicDto;
 import com.dorow.alexander.subreddit.api.dto.subreddit.TopicDto;
+import com.dorow.alexander.subreddit.database.AppDatabase;
+import com.dorow.alexander.subreddit.database.model.FavoriteSubreddit;
 import com.dorow.alexander.subreddit.ui.base.BasePresenterImpl;
 
 import java.util.ArrayList;
@@ -18,12 +20,14 @@ public class SubredditPresenterImpl extends BasePresenterImpl<SubredditView> imp
 
     private final RedditApi api;
     private final String selectedSubreddit;
+    private final AppDatabase db;
     private String after;
     private int dist;
 
-    public SubredditPresenterImpl(SubredditView view, RedditApi api, String selectedSubreddit) {
+    public SubredditPresenterImpl(SubredditView view, RedditApi api, AppDatabase db, String selectedSubreddit) {
         super(view);
         this.api = api;
+        this.db = db;
         this.selectedSubreddit = selectedSubreddit.replace("r/", "");
         loadMore();
     }
@@ -51,5 +55,19 @@ public class SubredditPresenterImpl extends BasePresenterImpl<SubredditView> imp
     @Override
     public void loadMore() {
         api.getSubredditData(selectedSubreddit, dist, after, 10).enqueue(this);
+    }
+
+    @Override
+    public void onItemSelected(TopicDto item) {
+        view.openTopicActivity(selectedSubreddit, item.getId());
+    }
+
+    @Override
+    public void saveOnFavoriteSubOnDatabase(boolean save) {
+        if (save) {
+            db.favoriteSubredditDao().insert(new FavoriteSubreddit(selectedSubreddit));
+        } else {
+            db.favoriteSubredditDao().remove(selectedSubreddit);
+        }
     }
 }

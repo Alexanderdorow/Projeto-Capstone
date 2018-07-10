@@ -1,6 +1,7 @@
 package com.dorow.alexander.subreddit.di.module;
 
 import com.dorow.alexander.subreddit.api.RedditApi;
+import com.dorow.alexander.subreddit.database.AppDatabase;
 import com.dorow.alexander.subreddit.ui.search.SearchPresenter;
 import com.dorow.alexander.subreddit.ui.search.SearchPresenterImpl;
 import com.dorow.alexander.subreddit.ui.search.SearchView;
@@ -33,8 +34,8 @@ public class SubredditModule {
     }
 
     @Provides
-    public SubredditPresenter providesPresenter(SubredditView view, RedditApi api, String selectedSubreddit) {
-        return new SubredditPresenterImpl(view, api, selectedSubreddit);
+    public SubredditPresenter providesPresenter(SubredditView view, RedditApi api, AppDatabase db, String selectedSubreddit) {
+        return new SubredditPresenterImpl(view, api, db, selectedSubreddit);
     }
 
 

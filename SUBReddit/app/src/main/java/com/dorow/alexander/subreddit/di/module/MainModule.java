@@ -1,6 +1,6 @@
 package com.dorow.alexander.subreddit.di.module;
 
-import com.dorow.alexander.subreddit.api.RedditApi;
+import com.dorow.alexander.subreddit.AppConfiguration;
 import com.dorow.alexander.subreddit.ui.main.MainActivity;
 import com.dorow.alexander.subreddit.ui.main.MainPresenter;
 import com.dorow.alexander.subreddit.ui.main.MainPresenterImpl;
@@ -23,8 +23,8 @@ public class MainModule {
     }
 
     @Provides
-    MainPresenter providesMainPresenter(MainActivity context, RedditApi api) {
-        return new MainPresenterImpl(context, api);
+    MainPresenter providesMainPresenter(MainActivity context, AppConfiguration configuration) {
+        return new MainPresenterImpl(context, configuration);
     }
 
 }
