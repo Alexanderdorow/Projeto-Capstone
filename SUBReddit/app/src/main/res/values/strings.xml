@@ -18,4 +18,6 @@
     <string name="dialog_log_message">Você permite que o SUBReddit grave logs para melhorar o sistema?</string>
     <string name="yes">Sim</string>
     <string name="no">Não</string>
+    <string name="search_message">Pesquise, explore e favorite seus subreddits para faze-los aparecer aqui.</string>
+    <string name="no_sub_found_message">Nenhum SUBReddit encontrado</string>
 </resources>
