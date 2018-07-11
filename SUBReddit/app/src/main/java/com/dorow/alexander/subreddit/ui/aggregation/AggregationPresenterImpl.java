@@ -22,10 +22,6 @@ public class AggregationPresenterImpl extends BasePresenterImpl<AggregationView>
         super(view);
         SyncObservable.getInstance().addObserver(this);
         this.db = db;
-        if (db.favoriteSubredditDao().findAll().size() > 0) {
-            new SyncTask().execute();
-            this.view.showLoading();
-        }
     }
 
     @Override
@@ -53,6 +49,10 @@ public class AggregationPresenterImpl extends BasePresenterImpl<AggregationView>
             }
         } else {
             List<Topic> all = db.topicDao().findAll();
+            if (db.favoriteSubredditDao().findAll().size() > 0) {
+                new SyncTask().execute();
+                this.view.showLoading();
+            }
             if (all.size() > 0) {
                 this.view.hideLoading();
                 this.view.addItemsOnView(all);

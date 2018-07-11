@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivityImpl<MainPresenter, ActivityMainBi
     @Override
     protected void onResume() {
         super.onResume();
-        inflateMainFragment(true);
+//        inflateMainFragment(true);
         AppApplication.logEvent("in_main_activity", this);
     }
 

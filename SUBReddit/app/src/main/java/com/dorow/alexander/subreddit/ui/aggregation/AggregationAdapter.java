@@ -21,7 +21,6 @@ public class AggregationAdapter extends RecyclerView.Adapter<AggregationViewHold
     private Set<Topic> data = new HashSet<>();
 
     public AggregationAdapter() {
-        this.callback = callback;
     }
 
     @NonNull

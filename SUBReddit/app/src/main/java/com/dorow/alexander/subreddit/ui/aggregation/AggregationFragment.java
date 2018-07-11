@@ -30,7 +30,7 @@ public class AggregationFragment extends BaseFragmentImpl<AggregationPresenter, 
         adapter = new AggregationAdapter();
         DaggerSubredditAggregationComponent.builder().subredditAggregationModule(new SubredditAggregationModule(this)).build().inject(this);
         adapter.setCallback(presenter);
-        dataBinding.subredditNewsList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        dataBinding.subredditNewsList.setLayoutManager(new LinearLayoutManager(getContext()));
         dataBinding.subredditNewsList.setAdapter(adapter);
         dataBinding.subredditNewsList.addOnScrollListener(new EndlessRecyclerOnScrollListener((LinearLayoutManager) dataBinding.subredditNewsList.getLayoutManager()) {
             @Override
