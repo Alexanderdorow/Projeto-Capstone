@@ -1,5 +1,6 @@
 package com.dorow.alexander.subreddit.ui.settings;
 
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -18,7 +19,7 @@ public class SettingsActivity extends BaseActivityImpl<SettingsPresenter, Activi
     private SettingsAdapter adapter;
 
     @Override
-    public void onViewReady() {
+    public void onViewReady(Bundle savedInstanceState) {
         adapter = new SettingsAdapter();
         DaggerSettingsComponent.builder().settingsModule(new SettingsModule(this)).build().inject(this);
         adapter.setCallback(presenter);

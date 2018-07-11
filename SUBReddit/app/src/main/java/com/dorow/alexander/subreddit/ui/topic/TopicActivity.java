@@ -1,5 +1,6 @@
 package com.dorow.alexander.subreddit.ui.topic;
 
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebViewClient;
@@ -17,7 +18,7 @@ public class TopicActivity extends BaseActivityImpl<TopicPresenter, ActivityTopi
     public static final String SUBREDDIT_ID = "SUBREDDIT_ID";
 
     @Override
-    public void onViewReady() {
+    public void onViewReady(Bundle savedInstanceState) {
         DaggerTopicComponent.builder().topicModule(new TopicModule(this,
                 getIntent().getStringExtra(SUBREDDIT_ID),
                 getIntent().getStringExtra(SubredditActivity.SELECTED_SUBREDDIT)

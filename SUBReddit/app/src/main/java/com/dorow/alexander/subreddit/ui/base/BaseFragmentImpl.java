@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.dorow.alexander.subreddit.ui.main.MainActivity;
 import com.dorow.alexander.subreddit.ui.main.MainView;
 
 import javax.inject.Inject;
@@ -41,7 +40,7 @@ public abstract class BaseFragmentImpl<P extends BasePresenter, DB extends ViewD
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        onViewReady();
+        onViewReady(savedInstanceState);
     }
 
     @Override

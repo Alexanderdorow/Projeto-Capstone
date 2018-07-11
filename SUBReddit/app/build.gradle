@@ -16,7 +16,7 @@ android {
         buildConfigField 'String' ,'SERVER_URL', '"https://www.reddit.com/"'
     }
     signingConfigs {
-        config {
+        release {
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
             storeFile file(keystoreProperties['storeFile'])
@@ -26,7 +26,7 @@ android {
 
     buildTypes {
         release {
-            signingConfig signingConfigs.config
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

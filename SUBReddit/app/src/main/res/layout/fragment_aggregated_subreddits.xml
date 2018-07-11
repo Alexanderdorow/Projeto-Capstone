@@ -6,12 +6,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
+        <com.dorow.alexander.subreddit.ui.component.CustomRecyclerView
             android:id="@+id/subreddit_news_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="visible"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+            android:visibility="visible" />
 
         <ImageView
             android:id="@+id/noSubredditImage"

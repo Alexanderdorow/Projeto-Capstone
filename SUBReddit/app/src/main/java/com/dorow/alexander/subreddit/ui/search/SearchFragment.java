@@ -1,5 +1,6 @@
 package com.dorow.alexander.subreddit.ui.search;
 
+import android.os.Bundle;
 import android.view.View;
 
 import com.dorow.alexander.subreddit.R;
@@ -18,7 +19,7 @@ public class SearchFragment extends BaseFragmentImpl<SearchPresenter, FragmentSu
     private SearchAdapter adapter;
 
     @Override
-    public void onViewReady() {
+    public void onViewReady(Bundle savedInstanceState) {
         adapter = new SearchAdapter(this);
         dataBinding.searchList.setAdapter(adapter);
         DaggerSubredditSearchComponent.builder()

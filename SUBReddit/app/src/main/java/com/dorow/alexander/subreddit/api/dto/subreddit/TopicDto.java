@@ -2,7 +2,9 @@ package com.dorow.alexander.subreddit.api.dto.subreddit;
 
 import com.google.gson.annotations.SerializedName;
 
-public class TopicDto {
+import java.io.Serializable;
+
+public class TopicDto implements Serializable {
 
     @SerializedName("id")
     private String id;

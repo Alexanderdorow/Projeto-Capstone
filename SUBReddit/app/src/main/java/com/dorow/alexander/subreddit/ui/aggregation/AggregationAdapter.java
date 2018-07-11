@@ -50,4 +50,8 @@ public class AggregationAdapter extends RecyclerView.Adapter<AggregationViewHold
     public void setCallback(AdapterItemClickCallback<Topic> callback) {
         this.callback = callback;
     }
+
+    public ArrayList<Topic> getItems() {
+        return new ArrayList<>(this.data);
+    }
 }

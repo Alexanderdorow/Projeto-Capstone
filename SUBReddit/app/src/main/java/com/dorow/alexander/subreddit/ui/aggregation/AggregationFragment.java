@@ -1,6 +1,8 @@
 package com.dorow.alexander.subreddit.ui.aggregation;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
@@ -24,10 +26,11 @@ public class AggregationFragment extends BaseFragmentImpl<AggregationPresenter, 
     private AggregationAdapter adapter;
 
     @Override
-    public void onViewReady() {
+    public void onViewReady(Bundle savedInstanceState) {
         adapter = new AggregationAdapter();
         DaggerSubredditAggregationComponent.builder().subredditAggregationModule(new SubredditAggregationModule(this)).build().inject(this);
         adapter.setCallback(presenter);
+        dataBinding.subredditNewsList.setLayoutManager(new LinearLayoutManager(getActivity()));
         dataBinding.subredditNewsList.setAdapter(adapter);
         dataBinding.subredditNewsList.addOnScrollListener(new EndlessRecyclerOnScrollListener((LinearLayoutManager) dataBinding.subredditNewsList.getLayoutManager()) {
             @Override
@@ -39,6 +42,13 @@ public class AggregationFragment extends BaseFragmentImpl<AggregationPresenter, 
             Topic topic = (Topic) getArguments().getSerializable(WIDGET_TOPIC_EXTRA);
             presenter.onItemClick(topic);
         }
+        presenter.retrieveData(savedInstanceState);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        presenter.saveInstanceState(outState, adapter.getItems());
+        super.onSaveInstanceState(outState);
     }
 
     @Override

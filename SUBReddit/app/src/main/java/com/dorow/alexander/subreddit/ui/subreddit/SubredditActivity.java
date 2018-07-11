@@ -1,6 +1,7 @@
 package com.dorow.alexander.subreddit.ui.subreddit;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -25,7 +26,7 @@ public class SubredditActivity extends BaseActivityImpl<SubredditPresenter, Acti
     public final static String SELECTED_SUBREDDIT = "SELECTED_SUBREDDIT";
 
     @Override
-    public void onViewReady() {
+    public void onViewReady(Bundle savedInstanceState) {
         String subredditSelected = getIntent().getStringExtra(SELECTED_SUBREDDIT);
         DaggerSubredditComponent.builder()
                 .subredditModule(new SubredditModule(this, subredditSelected))
@@ -36,13 +37,22 @@ public class SubredditActivity extends BaseActivityImpl<SubredditPresenter, Acti
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(subredditSelected);
         adapter = new SubredditAdapter(this);
+        dataBinding.subredditList.setLayoutManager(new LinearLayoutManager(this));
         dataBinding.subredditList.setAdapter(adapter);
+        if (savedInstanceState != null)
+            presenter.retrieveData(savedInstanceState);
         dataBinding.subredditList.addOnScrollListener(new EndlessRecyclerOnScrollListener((LinearLayoutManager) dataBinding.subredditList.getLayoutManager()) {
             @Override
             public void onLoadMore() {
                 presenter.loadMore();
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        presenter.saveInstanceState(outState, adapter.getItems());
+        super.onSaveInstanceState(outState);
     }
 
     @Override

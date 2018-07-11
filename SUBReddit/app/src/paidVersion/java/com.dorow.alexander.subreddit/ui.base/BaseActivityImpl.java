@@ -20,7 +20,7 @@ public abstract class BaseActivityImpl<P extends BasePresenter, DB extends ViewD
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dataBinding = DataBindingUtil.setContentView(this, getContentView());
-        onViewReady();
+        onViewReady(savedInstanceState);
     }
 
     @Override

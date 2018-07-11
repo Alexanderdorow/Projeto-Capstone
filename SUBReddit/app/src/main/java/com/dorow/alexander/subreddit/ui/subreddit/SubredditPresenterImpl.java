@@ -1,5 +1,7 @@
 package com.dorow.alexander.subreddit.ui.subreddit;
 
+import android.os.Bundle;
+
 import com.dorow.alexander.subreddit.api.RedditApi;
 import com.dorow.alexander.subreddit.api.dto.subreddit.RedditSubredditResponse;
 import com.dorow.alexander.subreddit.api.dto.subreddit.SubredditResponse;
@@ -18,6 +20,9 @@ import retrofit2.Response;
 
 public class SubredditPresenterImpl extends BasePresenterImpl<SubredditView> implements SubredditPresenter, Callback<RedditSubredditResponse> {
 
+    private static final String SAVED_INSTANCE_DIST = "SAVED_INSTANCE_DIST";
+    private static final String SAVED_INSTANCE_AFTER = "SAVED_INSTANCE_AFTER";
+    private static final String SAVED_INSTANCE_ITEMS = "SAVED_INSTANCE_ITEMS";
     private final RedditApi api;
     private final String selectedSubreddit;
     private final AppDatabase db;
@@ -69,5 +74,20 @@ public class SubredditPresenterImpl extends BasePresenterImpl<SubredditView> imp
         } else {
             db.favoriteSubredditDao().remove(selectedSubreddit);
         }
+    }
+
+    @Override
+    public void saveInstanceState(Bundle outState, List<TopicDto> items) {
+        outState.putInt(SAVED_INSTANCE_DIST, dist);
+        outState.putString(SAVED_INSTANCE_AFTER, after);
+        outState.putSerializable(SAVED_INSTANCE_ITEMS, new ArrayList<>(items));
+    }
+
+    @Override
+    public void retrieveData(Bundle savedInstanceState) {
+        dist = savedInstanceState.getInt(SAVED_INSTANCE_DIST);
+        after = savedInstanceState.getString(SAVED_INSTANCE_AFTER);
+        List<TopicDto> topicDtos = (List<TopicDto>) savedInstanceState.getSerializable(SAVED_INSTANCE_ITEMS);
+        view.addItemsOnAdapter(topicDtos);
     }
 }

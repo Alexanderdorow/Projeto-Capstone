@@ -1,6 +1,6 @@
 package com.dorow.alexander.subreddit.ui.main;
 
-import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.MenuItem;
 
@@ -14,4 +14,6 @@ public interface MainPresenter extends
     void onPositiveDialogButtonClick();
 
     void onNegativeDialogButtonClick();
+
+    void saveState(Bundle outState);
 }

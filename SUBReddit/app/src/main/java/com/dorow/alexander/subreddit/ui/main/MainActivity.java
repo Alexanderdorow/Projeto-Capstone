@@ -1,10 +1,12 @@
 package com.dorow.alexander.subreddit.ui.main;
 
 import android.app.AlertDialog;
+import android.app.DownloadManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,11 +39,14 @@ public class MainActivity extends BaseActivityImpl<MainPresenter, ActivityMainBi
     public static final int WINDOW_END = 3600;
     public static final String JOB_TAG = "location-update-job";
     public static final String WIDGET_TOPIC_EXTRA = "WIDGET_TOPIC_EXTRA";
+    private Bundle savedInstanceState;
+    private SearchView mSearchView;
 
     @Override
-    public void onViewReady() {
+    public void onViewReady(Bundle savedInstanceState) {
         DaggerMainComponent.builder().mainModule(new MainModule(this)).build().inject(this);
         setSupportActionBar(dataBinding.toolbar);
+        this.savedInstanceState = savedInstanceState;
     }
 
     @Override
@@ -54,9 +59,28 @@ public class MainActivity extends BaseActivityImpl<MainPresenter, ActivityMainBi
     @Override
     public void beforeCreateMenu(Menu menu) {
         MenuItem mSearch = menu.findItem(R.id.search);
-        SearchView mSearchView = (SearchView) mSearch.getActionView();
+        mSearchView = (SearchView) mSearch.getActionView();
         mSearchView.setOnQueryTextListener(presenter);
         mSearch.setOnActionExpandListener(presenter);
+        if (savedInstanceState != null) {
+            retrieveInstanceStateData(savedInstanceState, mSearch, mSearchView);
+        }
+    }
+
+    private void retrieveInstanceStateData(Bundle savedInstanceState, MenuItem mSearch, SearchView mSearchView) {
+        String queryText = savedInstanceState.getString(MainPresenterImpl.SAVED_INSTANCE_QUERY_TEXT);
+        boolean filterOpen = savedInstanceState.getBoolean(MainPresenterImpl.SAVED_INSTANCE_FILTER_OPEN, false);
+        if (filterOpen) {
+            mSearch.expandActionView();
+            mSearchView.setQuery(queryText, true);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        mSearchView.setOnQueryTextListener(null);
+        presenter.saveState(outState);
+        super.onSaveInstanceState(outState);
     }
 
     @Override

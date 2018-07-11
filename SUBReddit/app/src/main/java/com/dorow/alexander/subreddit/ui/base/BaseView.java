@@ -1,7 +1,9 @@
 package com.dorow.alexander.subreddit.ui.base;
 
+import android.os.Bundle;
+
 public interface BaseView {
 
-    void onViewReady();
+    void onViewReady(Bundle savedInstanceState);
 
 }

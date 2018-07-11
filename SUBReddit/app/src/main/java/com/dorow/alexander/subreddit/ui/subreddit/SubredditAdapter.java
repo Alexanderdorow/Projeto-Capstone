@@ -44,4 +44,8 @@ public class SubredditAdapter extends RecyclerView.Adapter<SubredditViewHolder> 
         this.data.addAll(data);
         notifyDataSetChanged();
     }
+
+    public List<TopicDto> getItems() {
+        return this.data;
+    }
 }
