@@ -2,7 +2,9 @@ package com.dorow.alexander.subreddit.api.dto;
 
 import com.google.gson.annotations.SerializedName;
 
-public class SubredditSearchData {
+import java.io.Serializable;
+
+public class SubredditSearchData implements Serializable {
     @SerializedName("display_name_prefixed")
     private String subredditPrefix;
     @SerializedName("display_name")

@@ -43,4 +43,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
         this.data = data;
         notifyDataSetChanged();
     }
+
+    public List<SubredditSearchData> getItems() {
+        return data;
+    }
 }

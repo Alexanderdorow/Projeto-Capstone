@@ -47,12 +47,12 @@ public class MainActivity extends BaseActivityImpl<MainPresenter, ActivityMainBi
         DaggerMainComponent.builder().mainModule(new MainModule(this)).build().inject(this);
         setSupportActionBar(dataBinding.toolbar);
         this.savedInstanceState = savedInstanceState;
+        presenter.restoreData(savedInstanceState);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-//        inflateMainFragment(true);
         AppApplication.logEvent("in_main_activity", this);
     }
 

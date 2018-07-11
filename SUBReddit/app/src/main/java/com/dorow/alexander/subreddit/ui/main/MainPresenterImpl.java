@@ -11,14 +11,15 @@ public class MainPresenterImpl extends BasePresenterImpl<MainView> implements Ma
 
     public static final String SAVED_INSTANCE_QUERY_TEXT = "SAVED_INSTANCE_QUERY_TEXT";
     public static final String SAVED_INSTANCE_FILTER_OPEN = "SAVED_INSTANCE_FILTER_OPEN";
+    private static final String SAVED_INSTANCE_SCREEN_ROTATED = "SAVED_INSTANCE_SCREEN_ROTATED";
     private final AppConfiguration config;
     private String queryText;
     private boolean filterOpen;
+    private boolean screenRotated;
 
     public MainPresenterImpl(MainView view, AppConfiguration config) {
         super(view);
         this.view.initJobDispatcher(config.onlyWifiSync());
-        this.view.inflateMainFragment(false);
         this.config = config;
         verifyLogPermissions();
     }
@@ -31,6 +32,10 @@ public class MainPresenterImpl extends BasePresenterImpl<MainView> implements Ma
 
     @Override
     public boolean onQueryTextSubmit(String query) {
+        if (screenRotated) {
+            screenRotated = false;
+            return false;
+        }
         view.inflateSearchFragment(query);
         return false;
     }
@@ -68,8 +73,18 @@ public class MainPresenterImpl extends BasePresenterImpl<MainView> implements Ma
 
     @Override
     public void saveState(Bundle outState) {
+        screenRotated = true;
         outState.putString(SAVED_INSTANCE_QUERY_TEXT, queryText);
         outState.putBoolean(SAVED_INSTANCE_FILTER_OPEN, filterOpen);
+        outState.putBoolean(SAVED_INSTANCE_SCREEN_ROTATED, true);
+    }
 
+    @Override
+    public void restoreData(Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
+            this.view.inflateMainFragment(false);
+        } else {
+            screenRotated = savedInstanceState.getBoolean(SAVED_INSTANCE_SCREEN_ROTATED, false);
+        }
     }
 }

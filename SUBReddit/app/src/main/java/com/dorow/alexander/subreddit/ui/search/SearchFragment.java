@@ -1,6 +1,8 @@
 package com.dorow.alexander.subreddit.ui.search;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.dorow.alexander.subreddit.R;
@@ -21,11 +23,19 @@ public class SearchFragment extends BaseFragmentImpl<SearchPresenter, FragmentSu
     @Override
     public void onViewReady(Bundle savedInstanceState) {
         adapter = new SearchAdapter(this);
+        dataBinding.searchList.setLayoutManager(new LinearLayoutManager(getContext()));
         dataBinding.searchList.setAdapter(adapter);
         DaggerSubredditSearchComponent.builder()
                 .subredditSearchModule(new SubredditSearchModule(this, getArguments().getString(SEARCH_TEXT)))
                 .build()
                 .inject(this);
+        presenter.restoreState(savedInstanceState);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        presenter.onSaveInstance(outState, adapter.getItems());
+        super.onSaveInstanceState(outState);
     }
 
     @Override

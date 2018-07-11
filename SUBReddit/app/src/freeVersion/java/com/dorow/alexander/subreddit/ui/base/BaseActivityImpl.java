@@ -26,11 +26,10 @@ public abstract class BaseActivityImpl<P extends BasePresenter, DB extends ViewD
         super.onCreate(savedInstanceState);
         dataBinding = DataBindingUtil.setContentView(this, getContentView());
         MobileAds.initialize(this);
-
         AdView ad = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         ad.loadAd(adRequest);
-        onViewReady();
+        onViewReady(savedInstanceState);
     }
 
     @Override

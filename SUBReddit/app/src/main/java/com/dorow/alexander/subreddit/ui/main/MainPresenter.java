@@ -16,4 +16,6 @@ public interface MainPresenter extends
     void onNegativeDialogButtonClick();
 
     void saveState(Bundle outState);
+
+    void restoreData(Bundle savedInstanceState);
 }
