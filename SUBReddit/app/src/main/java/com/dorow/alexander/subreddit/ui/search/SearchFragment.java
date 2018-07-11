@@ -33,7 +33,7 @@ public class SearchFragment extends BaseFragmentImpl<SearchPresenter, FragmentSu
     }
 
     @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
+    public void onSaveInstanceState(Bundle outState) {
         presenter.onSaveInstance(outState, adapter.getItems());
         super.onSaveInstanceState(outState);
     }
